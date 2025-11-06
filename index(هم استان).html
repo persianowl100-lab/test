@@ -1,0 +1,969 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هم‌استان - پلتفرم نوآوری اجتماعی استان کرمانشاه</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/sahel-font@v3.4.0/dist/Farsi-Digits/IRANNastaliq.css" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #00C853;
+            --primary-dark: #009624;
+            --secondary: #00E676;
+            --accent: #64DD17;
+            --light: #ffffff;
+            --dark: #1B5E20;
+            --text: #1a1a1a;
+            --text-light: #4a4a4a;
+            --shadow: 0 4px 20px rgba(0, 200, 83, 0.15);
+            --transition: all 0.4s ease;
+            --nastaliq-font: 'IranNastaliq', 'Traditional Arabic', 'Scheherazade', serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: #f8fff8;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* کادر نستعلیق */
+        .nastaliq-banner {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary-dark) 50%, var(--primary) 100%);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid var(--accent);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+            margin-bottom: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nastaliq-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+            opacity: 0.2;
+        }
+        
+        .nastaliq-banner h2 {
+            font-family: var(--nastaliq-font);
+            font-size: 3.5rem;
+            line-height: 1.5;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            margin: 0 auto;
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1.2s ease-out;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.8s ease-out;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+
+justify-content: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--dark);
+            box-shadow: 0 4px 15px rgba(100, 221, 23, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background-color: #76FF03;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(100, 221, 23, 0.4);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(27, 94, 32, 0.85), rgba(0, 150, 36, 0.9)), url('https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .section-title p {
+            color: var(--text-light);
+
+max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            border: 1px solid rgba(0, 200, 83, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 200, 83, 0.2);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 200, 83, 0.3);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .feature-card p {
+            color: var(--text-light);
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 0;
+            background: linear-gradient(to bottom, #f8fff8, white);
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+            position: relative;
+        }
+        
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            right: 0;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(to left, var(--primary), var(--accent));
+            z-index: 1;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 0 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .step h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        /* Priorities Section */
+        .priorities {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .priority-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .priority-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+
+
+opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .priority-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .priority-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 200, 83, 0.3);
+        }
+        
+        .priority-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .priority-card h3 i {
+            color: var(--accent);
+        }
+        
+        /* Values Section */
+        .values {
+            padding: 5rem 0;
+            background: linear-gradient(to bottom, white, #f8fff8);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .value-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 200, 83, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .value-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 200, 83, 0.2);
+        }
+        
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(100, 221, 23, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .value-icon i {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #0d3d1a 100%);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-column a:hover {
+            color: var(--accent);
+            padding-right: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+
+
+margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* کادر پایانی */
+        .credits {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            border-top: 5px solid var(--accent);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .credits h3 {
+            font-family: var(--nastaliq-font);
+            font-size: 2.5rem;
+            line-height: 1.5;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .nastaliq-banner h2 {
+                font-size: 2.5rem;
+            }
+            
+            .credits h3 {
+                font-size: 2rem;
+            }
+            
+            .steps::before {
+                display: none;
+            }
+            
+            .step {
+                margin-bottom: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- کادر نستعلیق -->
+    <div class="nastaliq-banner">
+        <h2>حرکت عمومی راه علاج عبور از بحران های کنونی</h2>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h1>هم‌استان</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">خانه</a></li>
+                        <li><a href="#features">امکانات</a></li>
+                        <li><a href="#how-it-works">چگونه کار می‌کند</a></li>
+                        <li><a href="#priorities">اولویت‌ها</a></li>
+                        <li><a href="#values">ارزش‌ها</a></li>
+
+<li><a href="#contact">تماس با ما</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline">ورود</a>
+                    <a href="#" class="btn btn-primary">ثبت‌نام</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>پلتفرم نوآوری اجتماعی برای حل مسائل استان کرمانشاه</h2>
+                <p>با مشارکت دانشجویان، نخبگان و مردم؛ مدل نوین حکمرانی مشارکتی اسلامی مبتنی بر مردم، علم، اخلاق و نتیجه‌محوری</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">ثبت مسئله</a>
+                    <a href="#" class="btn btn-outline">مشاهده پروژه‌ها</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>ارکان کلیدی پلتفرم</h2>
+                <p>هم‌استان با بهره‌گیری از مکانیزم‌های نوآورانه، مشارکت واقعی مردم در حل مسائل استان را ممکن می‌سازد</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3>ثبت مسئله</h3>
+                    <p>هر شهروند می‌تواند مشکلات و چالش‌های محلی را در پلتفرم ثبت کند</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>تحلیل و اولویت‌بندی</h3>
+                    <p>استفاده از مدل‌های داده‌محور و علمی برای رتبه‌بندی مسائل</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>تیم‌سازی و اجرا</h3>
+                    <p>هم‌افزایی میدان، دانشگاه و متخصصان برای اجرای پروژه‌ها</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>آموزش و توانمندسازی</h3>
+                    <p>توانمندسازی نیروها و توسعه مهارت‌های عملی برای مشارکت موثر</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>شفافیت کامل</h3>
+                    <p>گزارش‌گیری عمومی، انتشار نتایج و داده‌ها برای ایجاد اعتماد</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>امتیاز و اعتبار</h3>
+                    <p>سیستم امتیازدهی، رزومه‌سازی و معرفی افراد موثر</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>چگونه کار می‌کند؟</h2>
+                <p>فرآیند ساده و شفاف مشارکت در پلتفرم هم‌استان</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">۱</div>
+                    <h3>ثبت مسئله</h3>
+                    <p>شهروندان مسائل محلی خود را در پلتفرم ثبت می‌کنند</p>
+
+
+</div>
+                <div class="step">
+                    <div class="step-number">۲</div>
+                    <h3>تحلیل و اولویت‌بندی</h3>
+                    <p>مسائل با استفاده از مدل M-RIF تحلیل و اولویت‌بندی می‌شوند</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">۳</div>
+                    <h3>تشکیل تیم</h3>
+                    <p>تیم‌های تخصصی برای حل مسائل اولویت‌دار تشکیل می‌شوند</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">۴</div>
+                    <h3>اجرا و نظارت</h3>
+                    <p>پروژه‌ها اجرا شده و روند پیشرفت به صورت شفاف گزارش می‌شود</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Priorities Section -->
+    <section class="priorities" id="priorities">
+        <div class="container">
+            <div class="section-title">
+                <h2>حوزه‌های اولویت‌دار</h2>
+                <p>تمرکز پلتفرم بر حل مسائل کلیدی استان کرمانشاه در حوزه‌های زیر است</p>
+            </div>
+            <div class="priority-cards">
+                <div class="priority-card">
+                    <h3><i class="fas fa-briefcase"></i> اشتغال محلی</h3>
+                    <p>حمایت از کسب‌وکارهای خرد اجتماعی و ایجاد فرصت‌های شغلی پایدار</p>
+                </div>
+                <div class="priority-card">
+                    <h3><i class="fas fa-city"></i> احیای بافت شهری</h3>
+                    <p>توسعه محله‌محور و احیای بافت‌های تاریخی و فرهنگی استان</p>
+                </div>
+                <div class="priority-card">
+                    <h3><i class="fas fa-tint"></i> خدمات عمومی</h3>
+                    <p>بهبود خدمات بهداشتی، آب و محیط‌زیست برای زندگی بهتر</p>
+                </div>
+                <div class="priority-card">
+                    <h3><i class="fas fa-graduation-cap"></i> آموزش و پژوهش</h3>
+                    <p>توسعه مهارت‌ها و فناوری‌های نوین برای آینده‌ای بهتر</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values" id="values">
+        <div class="container">
+            <div class="section-title">
+                <h2>ارزش‌ها و اصول بنیادین</h2>
+                <p>پلتفرم هم‌استان بر اساس ارزش‌های اسلامی و اخلاقی بنا شده است</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>توکل و مسئولیت‌پذیری</h3>
+                    <p>اعتماد به خداوند و پذیرش مسئولیت در قبال جامعه</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-star-of-life"></i>
+                    </div>
+                    <h3>صداقت و شفافیت</h3>
+                    <p>راستگویی و شفافیت کامل در تمامی مراحل کار</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-people-carry"></i>
+                    </div>
+                    <h3>کار جمعی و مشارکت</h3>
+                    <p>همکاری و همدلی برای دستیابی به اهداف مشترک</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>عدالت‌محوری و اخلاق‌مداری</h3>
+                    <p>توجه به عدالت و رعایت اصول اخلاقی در تمام فعالیت‌ها</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+
+
+<h2>همین حالا به جمع هم‌استانی‌ها بپیوندید</h2>
+            <p>با مشارکت در پلتفرم هم‌استان، در حل مسائل استان کرمانشاه سهیم شوید و آینده‌ای بهتر برای استان خود بسازید</p>
+            <a href="#" class="btn btn-primary">شروع مشارکت</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>هم‌استان</h3>
+                    <p>پلتفرم نوآوری اجتماعی برای حل مسائل استان کرمانشاه با مشارکت دانشجویان، نخبگان و مردم</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>لینک‌های سریع</h3>
+                    <ul>
+                        <li><a href="#home">خانه</a></li>
+                        <li><a href="#features">امکانات</a></li>
+                        <li><a href="#how-it-works">چگونه کار می‌کند</a></li>
+                        <li><a href="#priorities">اولویت‌ها</a></li>
+                        <li><a href="#values">ارزش‌ها</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>حوزه‌های فعالیت</h3>
+                    <ul>
+                        <li><a href="#">اشتغال و کارآفرینی</a></li>
+                        <li><a href="#">احیای بافت شهری</a></li>
+                        <li><a href="#">خدمات عمومی</a></li>
+                        <li><a href="#">آموزش و پژوهش</a></li>
+                        <li><a href="#">سلامت و بهداشت</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>تماس با ما</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> کرمانشاه، بلوار شهید بهشتی</li>
+                        <li><i class="fas fa-phone"></i> ۰۸۳-۳۷۲۵۴۳۲۱</li>
+                        <li><i class="fas fa-envelope"></i> info@hamostan.ir</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>کلیه حقوق این پلتفرم متعلق به «هم‌استان» می‌باشد. © ۱۴۰۳</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- کادر پایانی -->
+    <div class="credits">
+        <h3>طراحی و اجرا متعلق به انجمن اسلامی دانشجویان دانشگاه رازی</h3>
+    </div>
+
+    <script>
+        // انیمیشن اسکرول برای عناصر
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.feature-card, .step, .priority-card, .value-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
